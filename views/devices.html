@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Healthbook | My Devices</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        {% for device in devices %}
+        <div class="col-sm-6 col-sm-3">
+          <div class="thumbnail">
+            <img src="/images/devices/{{ device.readableName }}.jpg" alt="{{ device.readableName }}">
+            <div class="caption">
+              <h3>{{ device.fullName }}</h3>
+              <p>...</p>
+              <p>
+                <form id="{{ device.id }}" class="container" style="style: block;" method="{% if device.needProviderAuth %}POST{% else %}DELETE{% endif %}" action="https://api.artik.cloud/v1.1/devices/{{ device.id }}/providerauthwithtoken">
+                  <input type="hidden" name="token" value="{{ user.accessToken }}">
+                    {% if device.needProviderAuth %}
+                    <input type="submit" id="btn_{{ device.id }}" value="Authorize" class="btn btn-primary">
+                    {% else %}
+                    <input type="submit" id="btn_{{ device.id }}" value="De-Authorize" class="btn">
+                    {% endif %}
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

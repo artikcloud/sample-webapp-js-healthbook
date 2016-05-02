@@ -1,0 +1,50 @@
+{
+  "address": "0.0.0.0",
+  "port" : 4444,
+  "debug" : true,
+  "sessionSecret" : "artik cloud",
+  "oauth": {
+    "clientID": "3091679f5d6d413c98ff6da75fe06186",
+    "clientSecret": "4b31278e60d54c1499b91d38f734a816",
+    "callbackURL": "http://localhost:4444/login/artikcloud/callback"
+  },
+  "messageCount": 50,
+  "appPrefix": "achb_",
+  "devices": {
+    "dt29673f0481b4401bb73a622353b96150": {
+        "name": "withings",
+        "fullName": "Withings",
+        "unique": "com.samsung.sami.devices.withings_device",
+        "id": "dt29673f0481b4401bb73a622353b96150",
+        "requiresAuth": true
+    },
+    "dt8e71cabde68b4028b106832247cd6d72": {
+        "name": "fitbit",
+        "fullName": "Fitbit",
+        "unique": "com.samsung.sami.devices.fitbit_device",
+        "id": "dt8e71cabde68b4028b106832247cd6d72",
+        "requiresAuth": true
+    },
+    "dt548080e90be144f080ce28b26be62929": {
+        "name": "jawbone",
+        "fullName": "Jawbone",
+        "unique": "com.samsung.sami.devices.jawbone_device",
+        "id": "dt548080e90be144f080ce28b26be62929",
+        "requiresAuth": true
+    },
+    "dt9ad7ecfd34324765a9b12ef98a51b29e": {
+      "name": "openweathermap",
+      "fullName": "WeatherStation",
+      "unique": "io.samsungsami.openweathermap",
+      "id": "dt9ad7ecfd34324765a9b12ef98a51b29e",
+      "requiresAuth": false
+    },
+    "dta8ad42083f33441b8677e5b36f049a4b": {
+      "name": "mypedometer",
+      "fullName": "Pedometer",
+      "unique": "com.samsung.ssic.mypedometer",
+      "id": "dta8ad42083f33441b8677e5b36f049a4b",
+      "requiresAuth": false
+    }
+  }
+}

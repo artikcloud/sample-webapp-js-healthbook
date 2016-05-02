@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Healthbook | My Newsfeed</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Log Manually
+      </button>
+
+      <button type="button" class="btn btn-primary btn-sm" onclick="getLocation()">
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Get Weather
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <form method="POST" action="/messages">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">New Pedometer Entry</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="steps" class="control-label">Steps:</label>
+                  <input type="text" class="form-control" name="steps" id="steps"/>
+                </div>
+                <div class="form-group">
+                  <label for="distance" class="control-label">Distance Traveled:</label>
+                  <input type="text" class="form-control" name="distance" id="distance"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <input type="submit" class="btn btn-primary" name="Create Entry" value="Create Entry"/>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+
+      <div>
+        {% for message in messages %}
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="/images/devices/{{ message.dt.name}}_64.jpg" alt="{{ message.dt.name }}">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{ message.dt.name }}</h4>
+            {{ message.data2 }}
+            <p><abbr class="timeago" datetime="{{ message.time }}" title="{{ message.time }}">{{ message.time }}</abbr></p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/timeago.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("abbr.timeago").timeago();
+      });
+
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+              alert("Geolocation is not supported by this browser.");
+          }
+      }
+
+      function showPosition(position) {
+          var form = $('<form></form>');
+          form.attr("method", "post");
+          form.attr("action", "/actions");
+          var parameters = {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+          $.each(parameters, function(key, value) {
+              var field = $('<input></input>');
+
+              field.attr("type", "hidden");
+              field.attr("name", key);
+              field.attr("value", value);
+
+              form.append(field);
+          });
+
+          // The form needs to be a part of the document in
+          // order for us to be able to submit it.
+          $(document.body).append(form);
+          form.submit();
+      }
+    </script>
+
+
+  </body>
+</html>
