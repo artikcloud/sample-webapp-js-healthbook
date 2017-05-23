@@ -4,8 +4,8 @@
   "debug" : true,
   "sessionSecret" : "artik cloud",
   "oauth": {
-    "clientID": "3091679f5d6d413c98ff6da75fe06186",
-    "clientSecret": "4b31278e60d54c1499b91d38f734a816",
+    "clientID": "your_client_id",
+    "clientSecret": "your_client_secret",
     "callbackURL": "http://localhost:4444/login/artikcloud/callback"
   },
   "messageCount": 50,
@@ -37,13 +37,6 @@
       "fullName": "WeatherStation",
       "unique": "io.samsungsami.openweathermap",
       "id": "dt9ad7ecfd34324765a9b12ef98a51b29e",
-      "requiresAuth": false
-    },
-    "dta8ad42083f33441b8677e5b36f049a4b": {
-      "name": "mypedometer",
-      "fullName": "Pedometer",
-      "unique": "com.samsung.ssic.mypedometer",
-      "id": "dta8ad42083f33441b8677e5b36f049a4b",
       "requiresAuth": false
     }
   }
