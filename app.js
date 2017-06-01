@@ -209,7 +209,8 @@ app.post('/actions',
               actions: action
             }
           };
-          _messagesApi.sendMessageAction(action, function(error, response) {
+
+          _messagesApi.sendActions(action, function(error, response) {
             if (error) {
               console.error("Error sending action: " + JSON.stringify(error));
             } else {
@@ -260,7 +261,8 @@ app.post('/messages',
             ts: new Date().getTime(),
             data: data
           };
-          _messagesApi.sendMessageAction(message, function(error, response) {
+
+          _messagesApi.sendMessage(message, function(error, response) {
             if (error) {
               console.error("Error sending messages: " + JSON.stringify(error));
             } else {
