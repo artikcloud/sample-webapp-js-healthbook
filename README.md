@@ -1,14 +1,24 @@
-# A Node.js Web app sends data to and receives data from ARTIK Cloud
+# Node.js web application sending and receiving data from ARTIK Cloud
 
 A Node.js sample that connects to fitbit, withings and jawbone cloud connector to retrieve fitness data.
 
+Running this sample will help you understand the following:
 
-Introduction
--------------
+- Authenticating to 3rd party device api to retrieve device data.
+- Receiving Messages from the 3rd party service 
+- Adding an existing cloud connector to your web application
 
-## Setup
-* Create an [ARTIK Cloud Developer Application](https://developer.artik.cloud)
-* Application should add *permissions* for following *Device Type Ids*:
+## Setup / Installation
+
+### Setup at ARTIK Cloud
+
+Follow [these instructions](https://developer.artik.cloud/documentation/tools/web-tools.html#creating-an-application) to create an application. 
+
+- Under “AUTHORIZATION METHODS”, check “Authorization Code”.
+- Set “Redirect URL” to http://localhost:4444/login/artikcloud/callback
+- Under “PERMISSIONS”, check “Read” for “Profile”.
+
+Click the “Add Device Type” button and be sure to enable “Read” and “Write” permissions for the following Device Types:
 
 ```json
 Withings: dt29673f0481b4401bb73a622353b96150
@@ -17,13 +27,11 @@ Jawbone: dt548080e90be144f080ce28b26be62929
 Openweathermap: dt9ad7ecfd34324765a9b12ef98a51b29e
 ```
 
-* Application should set following *redirect_uri* for this sample:
+Get the [Client ID & Client Secret](https://developer.artik.cloud/documentation/tools/web-tools.html#how-to-find-your-application-id), which you will need later.
 
-```
-http://localhost:4444/login/artikcloud/callback
-```
+### Setup at Code
 
-* Add your client id / client secret to config.json file
+Add your application client id / client secret to `config.json` file
 
 ```
 {
@@ -40,15 +48,20 @@ http://localhost:4444/login/artikcloud/callback
 ```
 
 ## Run Sample
+
+```
 %> npm install
 %> ./bin/www
+```
 
 Browse to http://localhost:4444
 
-## Screenshot
+## Demo / Screenshots
+
+See larger screenshots with more details in the [screenshot folder](./screenshots)
+
 ![](./screenshots/flow.png "")
 
-See larger screenshots and more details in the [screenshot folder](./screenshots)
 
 More about ARTIK Cloud
 ---------------
