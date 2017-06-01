@@ -46,8 +46,9 @@ http://localhost:4444/login/artikcloud/callback
 Browse to http://localhost:4444
 
 ## Screenshot
-![Alt text](./screenshots/image1.png "image1")
+![](./screenshots/flow.png "")
 
+See larger screenshots and more details in the [screenshot folder](./screenshots)
 
 More about ARTIK Cloud
 ---------------
